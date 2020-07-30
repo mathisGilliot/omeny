@@ -1,0 +1,40 @@
+name: Build & deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ master ]
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v1
+    - name: Use Node.js
+      uses: actions/setup-node@v1
+      with:
+        node-version: 12.x
+    - name: Cache
+      uses: actions/cache@v2.1.0
+      with:
+        path: |
+          **/node_modules
+        key: node_modules
+    - name: npm install and build
+      run: |
+        npm install
+        npm run build --if-present
+      env:
+        CI: true
+    - name: Copy CNAME
+      run: cp CNAME build
+      if: ${{ github.event_name == 'push' }}
+      env:
+        CI: true
+    - name: GitHub Pages Deploy
+      uses: maxheld83/ghpages@v0.2.1
+      if: ${{ github.event_name == 'push' }}
+      env:
+        BUILD_DIR: build
+        GH_PAT: ${{ secrets.GH_PAT }}
