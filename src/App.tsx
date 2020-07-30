@@ -1,7 +1,3 @@
-import React from 'react';
+import React, { ReactElement } from 'react';
 
-export const App: React.FunctionComponent = () => {
-  return (
-    <div>Just do it!</div>
-  );
-};
+export const App: React.FunctionComponent = (): ReactElement => (<div>Just do it!</div>);

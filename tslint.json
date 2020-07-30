@@ -1,11 +1,6 @@
 {
   "extends": [
-    "tslint:recommended",
-    "tslint-react",
-    "tslint-config-prettier"
-  ],
-  "rulesDirectory": [
-    "./lib/lint-rules"
+    "tslint:recommended"
   ],
   "rules": {
     "align": [
@@ -20,11 +15,6 @@
     "comment-format": [
       true,
       "check-space"
-    ],
-    "file-header": [
-      true,
-      "Copyright \\(C\\)",
-      "Mathis Gilliot and Maxence Gilliot. All rights reserved."
     ],
     "interface-name": [
       true,
