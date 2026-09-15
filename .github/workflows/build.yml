@@ -20,7 +20,7 @@ jobs:
       with:
         path: |
           **/node_modules
-        key: node_modules
+        key: node_modules-${{ hashFiles('package.json') }}
     - name: npm install and build
       run: |
         npm install
